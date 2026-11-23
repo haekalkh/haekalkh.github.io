@@ -1,0 +1,129 @@
+/* Layout idea: a lab notebook. Left rail of mono "specimen labels", right column of prose.
+   The hero is a stained tissue field that a model segments in real time. */
+:root{
+  --paper:#f5f6f4;      /* glass slide, slightly cool */
+  --ink:#16191d;
+  --muted:#5b636c;
+  --rule:#d9ddd9;
+  --stain:#a3213e;      /* trichrome crimson: cytoplasm */
+  --collagen:#2f6f8f;   /* trichrome blue: collagen */
+  --card:#ffffff;
+  --display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111416; --ink:#e9ebe8; --muted:#9aa3aa; --rule:#2a3035;
+    --stain:#e0657f; --collagen:#7fb6d1; --card:#171b1e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111416; --ink:#e9ebe8; --muted:#9aa3aa; --rule:#2a3035;
+  --stain:#e0657f; --collagen:#7fb6d1; --card:#171b1e; color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration-color:var(--stain);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--stain)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--stain);outline-offset:3px;border-radius:2px}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:400}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.mark{font-family:var(--mono);font-size:13px;letter-spacing:.02em}
+.mark b{color:var(--stain);font-weight:500}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px}
+nav ul a{text-decoration:none;color:var(--muted)}
+nav ul a:hover{color:var(--ink)}
+@media (max-width:640px){nav ul{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding-top:64px;padding-bottom:48px}
+.hero h1{font-family:var(--display);font-size:clamp(46px,6.4vw,84px);line-height:.98;letter-spacing:-.01em}
+.hero h1 em{color:var(--stain)}
+.role{margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.lede{margin-top:26px;font-size:19px;max-width:34ch}
+.cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--ink);border-radius:999px;font-size:14px;text-decoration:none;font-weight:500}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary:hover{background:var(--stain);border-color:var(--stain);color:#fff}
+.btn:hover{border-color:var(--stain)}
+
+figure.slide{margin:0;position:relative;aspect-ratio:4/3.1;border-radius:6px;overflow:hidden;border:1px solid var(--rule);box-shadow:0 20px 50px -30px rgba(20,30,40,.45)}
+figure.slide canvas{width:100%;height:100%;display:block}
+.tag{position:absolute;font-family:var(--mono);font-size:11px;padding:3px 7px;background:rgba(255,255,255,.88);color:#16191d;border-radius:3px}
+.tag.l{left:10px;top:10px}.tag.r{right:10px;top:10px}
+figcaption{position:absolute;left:10px;bottom:10px;right:10px;font-family:var(--mono);font-size:11px;color:#16191d;display:flex;flex-wrap:wrap;gap:6px}
+figcaption span{background:rgba(255,255,255,.88);padding:2px 7px;border-radius:3px;display:inline-flex;align-items:center;gap:6px}
+figcaption i{width:9px;height:9px;border-radius:2px;display:inline-block}
+@media (max-width:860px){.hero{grid-template-columns:1fr;gap:32px;padding-top:40px}}
+
+/* figures strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stat{padding:22px 20px 22px 0}
+.stat + .stat{padding-left:20px;border-left:1px solid var(--rule)}
+.stat .n{font-family:var(--display);font-size:42px;line-height:1;font-variant-numeric:tabular-nums}
+.stat .n small{font-size:22px;color:var(--muted)}
+.stat .d{margin-top:8px;font-size:14px;color:var(--muted);max-width:24ch}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--rule)}}
+
+/* sections */
+section.block{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:72px 0;border-bottom:1px solid var(--rule)}
+.label{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;position:sticky;top:80px;align-self:start}
+.label b{display:block;color:var(--stain);font-weight:500;margin-bottom:6px}
+section.block h2{font-family:var(--display);font-size:clamp(32px,3.6vw,44px);line-height:1.1;margin-bottom:22px}
+.prose{max-width:66ch;display:flex;flex-direction:column;gap:16px}
+@media (max-width:760px){section.block{grid-template-columns:1fr;gap:16px;padding:52px 0}.label{position:static}}
+
+/* research entries */
+.entries{display:flex;flex-direction:column;gap:0;margin-top:8px}
+.entry{display:grid;grid-template-columns:1fr auto;gap:8px 24px;padding:28px 0;border-top:1px solid var(--rule)}
+.entry:first-child{border-top:0;padding-top:0}
+.entry h3{font-family:var(--display);font-size:28px;line-height:1.15}
+.entry .when{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap;padding-top:8px}
+.entry .body{grid-column:1/-1;display:flex;flex-direction:column;gap:12px;max-width:68ch}
+.entry .where{font-size:14px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--mono);font-size:11.5px;padding:3px 8px;border:1px solid var(--rule);border-radius:3px;color:var(--muted)}
+.status{font-family:var(--mono);font-size:11.5px;padding:3px 8px;border-radius:3px;background:color-mix(in srgb,var(--collagen) 14%,transparent);color:var(--collagen)}
+.status.done{background:color-mix(in srgb,var(--stain) 12%,transparent);color:var(--stain)}
+ul.find{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+ul.find li::marker{color:var(--stain)}
+
+/* projects grid */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.proj{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.proj .k{font-family:var(--mono);font-size:11.5px;color:var(--collagen);text-transform:uppercase;letter-spacing:.06em}
+.proj h3{font-family:var(--display);font-size:24px;line-height:1.15}
+.proj p{font-size:15px;color:var(--muted)}
+.proj .chips{margin-top:auto;padding-top:6px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}}
+
+/* timeline */
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--rule)}
+.timeline li:first-child{border-top:0;padding-top:0}
+.timeline .y{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.timeline .t{font-weight:500}
+.timeline .s{font-size:15px;color:var(--muted)}
+@media (max-width:520px){.timeline li{grid-template-columns:1fr;gap:2px}}
+
+/* contact */
+.contact{padding:80px 0 40px}
+.contact h2{font-family:var(--display);font-size:clamp(40px,5.4vw,68px);line-height:1}
+.contact h2 em{color:var(--stain)}
+.links{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:1px solid var(--rule)}
+.links a{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 0;border-bottom:1px solid var(--rule);text-decoration:none;margin-right:24px}
+.links a span:first-child{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.links a span:last-child{font-size:15px;overflow-wrap:anywhere}
+footer{padding:28px 0 48px;font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer em{font-family:var(--display);font-size:18px;color:var(--ink)}
+.contact-lede{margin-top:18px;max-width:52ch;color:var(--muted)}
+
