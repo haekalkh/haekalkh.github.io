@@ -30,6 +30,9 @@ function Hero() {
   return (
     <header className="wrap hero">
       <div>
+        {profile.photo && (
+          <img className="avatar" src={profile.photo} alt={`Portrait of ${profile.firstName} ${profile.lastName}`} width="96" height="96" />
+        )}
         <h1>{profile.firstName} <em>{profile.lastName}</em></h1>
         <div className="role">
           {profile.roles.map((r) => <span key={r}>{r}</span>)}
@@ -81,9 +84,17 @@ function Block({ id, num, label, children }) {
 function About() {
   return (
     <Block id="about" num="01" label="About">
-      <div className="prose">
-        <h2>{about.title}</h2>
-        {about.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+      <div className="about-grid">
+        <div className="prose">
+          <h2>{about.title}</h2>
+          {about.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+        </div>
+        {about.photo && (
+          <figure className="photo">
+            <img src={about.photo.src} alt={about.photo.alt} loading="lazy" width="664" height="830" />
+            <figcaption>{about.photo.caption}</figcaption>
+          </figure>
+        )}
       </div>
     </Block>
   )

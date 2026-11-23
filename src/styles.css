@@ -127,3 +127,11 @@ footer{padding:28px 0 48px;font-family:var(--mono);font-size:12px;color:var(--mu
 footer em{font-family:var(--display);font-size:18px;color:var(--ink)}
 .contact-lede{margin-top:18px;max-width:52ch;color:var(--muted)}
 
+
+/* photos */
+.avatar{display:block;width:96px;height:96px;border-radius:50%;object-fit:cover;margin-bottom:22px;border:3px solid var(--card);box-shadow:0 0 0 1px var(--rule),0 10px 24px -14px rgba(20,30,40,.5)}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:48px;align-items:start}
+.photo{margin:0;position:relative}
+.photo img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--rule)}
+.photo figcaption{position:static;margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--muted);display:block}
+@media (max-width:960px){.about-grid{grid-template-columns:1fr;gap:28px}.photo{max-width:420px}}

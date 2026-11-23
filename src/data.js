@@ -11,6 +11,8 @@ export const profile = {
   ],
   lede: 'I teach models to read kidney biopsies, then check whether they still hold up once the benchmark is over and the clinical question begins.',
   motto: 'Labor omnia vincit.',
+  // Photos live in public/images/. Replace the files to change them.
+  photo: '/images/portrait.jpg',
   location: 'Jakarta / Dijon',
 }
 
@@ -32,6 +34,11 @@ export const stats = [
 
 export const about = {
   title: 'Data makes hidden problems visible and measurable.',
+  photo: {
+    src: '/images/paris.jpg',
+    alt: 'Muhammad Haekal Khowarizmi in front of the Arc de Triomphe, Paris',
+    caption: 'Paris, during my Master 2 year in France',
+  },
   paragraphs: [
     'That is what drew me to computer vision. A pathologist grading a biopsy counts and judges structures by eye, and two experts can disagree. A segmentation model turns the same slide into numbers that can be checked, compared and repeated.',
     'My work sits between deep learning and nephropathology. I build instance-segmentation pipelines for kidney tissue, and I pay close attention to how they are evaluated, because a model that wins on a benchmark can still miss the thing a clinician needs to know.',
