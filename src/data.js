@@ -119,9 +119,9 @@ export const projects = [
 ]
 
 export const path = [
-  { y: '2026 –', t: 'PhD, cotutelle', s: 'Université Bourgogne Europe (ED SPIM) × Universitas Gunadarma' },
-  { y: '2026 –', t: 'Lecturer', s: 'Universitas Gunadarma · teaching includes Advanced Robotics' },
-  { y: '2024 –', t: 'Technology Development staff', s: 'Universitas Gunadarma (UG Technology Development)' },
+  { y: '2026 – now', t: 'PhD, cotutelle', s: 'Université Bourgogne Europe (ED SPIM) × Universitas Gunadarma' },
+  { y: '2026 – now', t: 'Lecturer', s: 'Universitas Gunadarma · teaching includes Advanced Robotics' },
+  { y: '2024 – now', t: 'Technology Development staff', s: 'Universitas Gunadarma (UG Technology Development)' },
   { y: 'Mar–Aug 2026', t: 'Research intern, SKINET', s: 'LEAD Laboratory, CNRS UMR 5022 · CHU Dijon Bourgogne' },
   { y: '2025 – 2026', t: 'M.Sc., Health AI track', s: 'Université Bourgogne Europe, Dijon · double degree' },
   { y: '2024 – 2026', t: 'M.M.S.I., Information Systems Management (Health AI)', s: 'Universitas Gunadarma · double degree' },
