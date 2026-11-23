@@ -5,6 +5,12 @@ export const profile = {
   firstName: 'Muhammad Haekal',
   lastName: 'Khowarizmi',
   initials: 'MHK',
+  greeting: "Hi, I'm",
+  quickFacts: [
+    { k: 'Based in', v: 'Jakarta · Dijon' },
+    { k: 'Focus', v: 'Medical image segmentation' },
+    { k: 'Now', v: 'PhD + lecturing at UG' },
+  ],
   roles: [
     'PhD candidate · Université Bourgogne Europe × Universitas Gunadarma',
     'Lecturer · Universitas Gunadarma, Jakarta',
